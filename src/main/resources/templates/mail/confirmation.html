@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation de réservation</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px;">
+<div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <h2 style="color: #d62828;">Bonjour <span th:text="${nom}">Nom</span>,</h2>
+
+    <p>Votre réservation a bien été <strong th:text="${statut}">CONFIRMÉE</strong> !</p>
+
+    <p>🩸 Don prévu le : <strong th:text="${date}">01/01/2025</strong> à <strong th:text="${heure}">10:00</strong></p>
+
+    <div style="margin-top: 20px;">
+        <a th:href="@{http://localhost:9090/login}" style="padding: 10px 15px; background-color: #e63946; color: white; text-decoration: none; border-radius: 4px;">Accéder à mon espace</a>
+    </div>
+
+    <p style="margin-top: 20px;">Merci pour votre engagement !</p>
+
+    <p style="color: gray;">— L'équipe LifeSaver</p>
+</div>
+</body>
+</html>

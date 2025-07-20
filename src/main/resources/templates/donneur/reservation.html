@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Réservation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</head>
+
+<body class="bg-[#fee2e2] p-8">
+
+<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-[0_1px_5px_rgba(0,0,0,0.03)]">
+    <h1 class="text-2xl font-bold mb-4 text-center">Réserver un créneau</h1>
+
+    <div class="mb-4 text-left">
+        <a th:href="@{/donneur}" class="inline-block bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">
+            ← Retour
+        </a>
+    </div>
+
+    <div th:if="${error}" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <p th:text="${error}"></p>
+    </div>
+
+    <form th:action="@{/donneur/reserver}" th:object="${reservation}" method="post" class="space-y-4">
+
+        <div class="grid grid-cols-2 gap-4">
+            <label>
+                <input type="text" th:field="*{nom}" placeholder="Nom" class="border p-2 rounded" required />
+            </label>
+            <label>
+                <input type="text" th:field="*{prenom}" placeholder="Prénom" class="border p-2 rounded" required />
+            </label>
+            <label>
+                <input type="email" th:field="*{email}" placeholder="Email" class="border p-2 rounded" required />
+            </label>
+            <label>
+                <input type="date" th:field="*{dateNaissance}" placeholder="mm/dd/yyyy" class="border p-2 rounded" required />
+            </label>
+            <label>
+                <input type="text" th:field="*{groupeSanguin}" placeholder="Groupe sanguin (ex : A+)" class="border p-2 rounded" />
+            </label>
+            <label>
+                <input type="text" th:field="*{localisation}" placeholder="Ville" class="border p-2 rounded" required />
+            </label>
+        </div>
+
+        <div>
+            <label class="block mb-1 font-semibold">Sexe</label>
+            <div class="flex gap-4" id="sexeDiv">
+                <label><input type="radio" th:value="'Femme'" th:field="*{sexe}" /> Femme</label>
+                <label><input type="radio" th:value="'Homme'" th:field="*{sexe}" /> Homme</label>
+            </div>
+        </div>
+
+        <div>
+            <label class="block mb-1 font-semibold">Centre de collecte</label>
+            <label for="centreSelect"></label><select id="centreSelect" th:field="*{centreId}" class="w-full border p-2 rounded" required>
+                <option value="">-- Choisir un centre --</option>
+                <option th:each="centre : ${centres}"
+                        th:value="${centre.id}"
+                        th:text="${centre.nom}">
+                </option>
+            </select>
+
+        </div>
+
+        <div>
+            <label class="block mb-1 font-semibold">Type de collecte</label>
+            <div class="flex items-center space-x-4">
+                <div th:each="type : ${typeCollectes}">
+                    <input type="radio" th:id="${type}" th:name="'typeCollecte'" th:value="${type}" />
+                    <label th:for="${type}" th:text="${type}"></label>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Créneaux dynamiques -->
+        <div>
+            <label class="block mb-1 font-semibold">Choisir un créneau</label>
+            <label for="creneauSelect"></label>
+            <select id="creneauSelect" th:field="*{creneauId}" class="form-control">
+                <option value="">-- Choisir un créneau --</option>
+            </select>
+        </div>
+
+        <button type="submit" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">
+            Réserver
+        </button>
+    </form>
+</div>
+
+<script>
+    function loadCreneaux() {
+        console.log("Chargement des créneaux...");
+        const centreId = document.getElementById("centreSelect").value;
+        const type = document.querySelector("input[name='typeCollecte']:checked")?.value;
+        const creneauSelect = document.getElementById("creneauSelect");
+
+        if (centreId && type) {
+            creneauSelect.innerHTML = '<option value="">Chargement...</option>';
+            fetch(`/api/creneaux/${centreId}/${type}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Réponse reçue des créneaux :", data); // 🪵 Debug
+                    creneauSelect.innerHTML = '<option value="">-- Choisir un créneau --</option>';
+                    data.forEach(cr => {
+                        const option = document.createElement("option");
+                        option.value = cr.id;
+                        option.textContent = `${cr.date} à ${cr.heure}`;
+                        creneauSelect.appendChild(option);
+                    });
+                });
+        } else {
+            creneauSelect.innerHTML = '<option value="">-- Choisir un centre et un type --</option>';
+        }
+    }
+
+    // Maintenant ça fonctionnera car les éléments existent déjà
+    document.getElementById("centreSelect").addEventListener("change", loadCreneaux);
+    document.querySelectorAll("input[name='typeCollecte']").forEach(input => {
+        input.addEventListener("change", loadCreneaux);
+    });
+</script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let popupMessage = /*[[${popupMessage}]]*/ null;
+
+    if (popupMessage && popupMessage !== 'null') {
+        Swal.fire({
+            title: 'Succès !',
+            text: popupMessage,
+            icon: 'success',
+            confirmButtonText: 'Retour à mon espace',
+            confirmButtonColor: '#e3342f'
+        }).then(() => {
+            window.location.href = '/donneur/page';
+        });
+    }
+    /*]]>*/
+</script>
+
+
+</body>
+</html>

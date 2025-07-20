@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+<!--  Header -->
+<header id="main-header" class="header">
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-tint blood-drop"></i>
+            <h1>LifeSaver</h1>
+        </div>
+        <nav class="navbar">
+            <a th:href="@{/}" class="nav-link active">Accueil</a>
+            <a th:href="@{/faq}" class="nav-link">FAQ</a>
+            <a th:href="@{/actuality}" class="nav-link">Actualités</a>
+            <a th:href="@{/logout}" class="btn btn-primary">Déconnexion</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main>
+
+    <!-- ✅ Compteur Total Donneurs -->
+    <div class="max-w-7xl mx-auto mb-8 mt-6">
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+            <h1 class="text-2xl font-bold text-red-600 mb-2">Total des Donneurs</h1>
+            <p class="text-4xl font-semibold text-gray-700" th:text="${totalDonneurs}">0</p>
+        </div>
+    </div>
+
+    <!--  Zone des Graphes -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-4xl mx-auto">
+
+        <!-- Graphe Répartition Groupes Sanguins -->
+        <div class="bg-white p-3 rounded-lg shadow">
+            <h2 class="text-base font-medium text-center mb-2">Répartition des Groupes Sanguins</h2>
+            <div class="h-[180px]">
+                <canvas id="bloodGroupChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Graphe Réservations par Mois -->
+        <div class="bg-white p-3 rounded-lg shadow">
+            <h2 class="text-base font-medium text-center mb-2">Réservations Totales par Mois</h2>
+            <div class="h-[180px]">
+                <canvas id="reservationChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Graphe Répartition par Sexe -->
+        <div class="bg-white p-3 rounded-lg shadow">
+            <h2 class="text-base font-medium text-center mb-2">Répartition des Donneurs par Sexe</h2>
+            <div class="h-[180px]">
+                <canvas id="sexPieChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Graphe Répartition par Âge (Donut) -->
+        <div class="bg-white p-3 rounded-lg shadow">
+            <h2 class="text-base font-medium text-center mb-2">Répartition des Donneurs par Âge</h2>
+            <div class="h-[180px]">
+                <canvas id="ageDonutChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="h-24"></div>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-10">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-1/3 mb-6">
+                <h3 class="text-xl font-bold mb-2">LifeSaver</h3>
+                <p class="text-gray-400">Plateforme officielle de don de sang au Maroc.</p>
+            </div>
+            <div class="w-full md:w-1/3 mb-6">
+                <h3 class="text-xl font-bold mb-2">Liens</h3>
+                <ul>
+                    <li><a th:href="@{/actuality}" class="text-gray-400 hover:text-white">Actualités</a></li>
+                    <li><a th:href="@{/faq}" class="text-gray-400 hover:text-white">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/3">
+                <h3 class="text-xl font-bold mb-2">Contact</h3>
+                <p class="text-gray-400"><i class="fas fa-phone mr-2"></i>+212 6 12 34 56 78</p>
+                <p class="text-gray-400"><i class="fas fa-envelope mr-2"></i>lifesavermorocco@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    // Injection des données
+    var groupesSanguins = /*[[${groupesSanguins}]]*/ [];
+    var reservationsParMois = /*[[${reservationsParMois}]]*/ [];
+    var repartitionSexe = /*[[${repartitionSexe}]]*/ [];
+    var repartitionAge = /*[[${repartitionAge}]]*/ []; // donut des âges
+
+    // Graphe Groupes Sanguins
+    new Chart(document.getElementById('bloodGroupChart'), {
+        type: 'bar',
+        data: {
+            labels: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+            datasets: [{
+                label: 'Nombre de dons',
+                data: groupesSanguins,
+                backgroundColor: '#ef4444'
+            }]
+        },
+        options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+
+    // Graphe Réservations par Mois
+    new Chart(document.getElementById('reservationChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'],
+            datasets: [{
+                label: 'Réservations',
+                data: reservationsParMois,
+                backgroundColor: '#3b82f6'
+            }]
+        },
+        options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+
+    // Graphe Répartition Sexe
+    new Chart(document.getElementById('sexPieChart'), {
+        type: 'pie',
+        data: {
+            labels: ['Hommes', 'Femmes'],
+            datasets: [{
+                data: repartitionSexe,
+                backgroundColor: ['#6366f1', '#f472b6']
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+
+    // Graphe Donut Répartition Âge
+    new Chart(document.getElementById('ageDonutChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['18-25', '26-35', '36-45', '46-55', '56+'],
+            datasets: [{
+                data: repartitionAge,
+                backgroundColor: ['#fbbf24', '#34d399', '#60a5fa', '#c084fc', '#f87171']
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+
+    /*]]>*/
+</script>
+<script th:src="@{/js/header-scroll.js}"></script>
+</body>
+</html>

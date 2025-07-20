@@ -1,0 +1,104 @@
+body {
+    background-image: url('img/background.jpg'); /* adapte le chemin si nécessaire */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 370px;
+    color: white;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.glass input,
+.glass select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 0.95rem;
+}
+
+.glass input::placeholder,
+.glass select {
+    color: #f4dada;
+}
+
+.glass button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    background: #dc2626; /* rouge sang */
+    color: white;
+    font-weight: bold;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.glass button:hover {
+    background: #b91c1c;
+}
+
+.glass .login-link {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #f5caca;
+}
+
+.glass .login-link a {
+    color: #f87171;
+    text-decoration: none;
+}
+.glass .login-link a:hover {
+    text-decoration: underline;
+}
+
+.glass .error-message {
+    color: #ffbbbb;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.relative {
+    position: relative;
+}
+
+.input-password {
+    padding-right: 2.5rem; /* espace pour l’icône à droite */
+}
+
+/* Positionne l’œil exactement au centre vertical et à droite */
+.eye-icon {
+    position: absolute;
+    right: 0.01rem; /* espace depuis le bord droit */
+    top: 40%; /* milieu vertical */
+    transform: translateY(-50%); /* centrer parfaitement */
+    cursor: pointer;
+    color: #e5e5e5; /* gris clair */
+    font-size: 1.1rem;
+    line-height: 1;
+}

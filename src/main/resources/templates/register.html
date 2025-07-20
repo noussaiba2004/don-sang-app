@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Inscription</title>
+  <link rel="stylesheet" href="/css/register.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+<form th:action="@{/register}" method="post" th:object="${user}" class="glass">
+  <h2>Créer un compte</h2>
+
+  <div th:if="${emailError}" class="error-message" th:text="${emailError}"></div>
+
+  <input type="text" name="email" placeholder="Email" th:field="*{email}" required>
+
+  <div class="relative mb-3">
+    <input id="password" type="password" name="password" placeholder="Mot de passe"
+           th:field="*{password}" required class="input-password">
+    <span class="eye-icon" onclick="togglePassword()">
+    <i id="toggleIcon" class="fa-solid fa-eye"></i>
+  </span>
+  </div>
+
+  <input type="hidden" name="role" th:field="*{role}" value="DONNEUR" />
+    <button type="submit">S'inscrire</button>
+
+    <div class="login-link">
+      Déjà un compte ? <a href="/login">Se connecter</a>
+    </div>
+  </form>
+<script>
+  function togglePassword() {
+    const passwordInput = document.getElementById("password");
+    const icon = document.getElementById("toggleIcon");
+    const isPassword = passwordInput.type === "password";
+    passwordInput.type = isPassword ? "text" : "password";
+    icon.classList.toggle("fa-eye");
+    icon.classList.toggle("fa-eye-slash");
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Événements de Don de Sang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/event.css}">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<!-- En-tête -->
+<header id="main-header" class="header fixed top-0 left-0 w-full z-50 transition-transform duration-300 bg-white shadow">
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-tint blood-drop"></i>
+            <h1>LifeSaver</h1>
+        </div>
+        <nav class="navbar">
+            <a th:href="@{/}" class="nav-link active">Accueil</a>
+            <a th:href="@{/event}" class="nav-link">Événements</a>
+            <a th:href="@{/actuality}" class="nav-link">Actualités</a>
+            <a th:href="@{/register}" class="btn btn-primary">S'inscrire</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Section des articles -->
+<section class="max-w-6xl mx-auto px-4 space-y-12">
+
+    <!-- Article 1 -->
+    <div class="flex flex-col lg:flex-row items-start gap-6 border-b pb-6">
+        <div class="flex-1">
+            <h2 class="text-2xl font-bold mb-2">Mobilisation pour la Journée nationale du don de sang</h2>
+
+            <p class="text-gray-700 text-sm mb-4 line-clamp-6" id="excerpt-1">
+                Le Maroc célèbre, ce samedi, la Journée nationale du don de sang, en résonance avec la Journée mondiale du donneur de sang...
+            </p>
+            <p class="text-gray-700 text-sm mb-4 hidden" id="full-1">
+                Le Maroc célèbre, ce samedi, la Journée nationale du don de sang, en résonance avec la Journée mondiale du donneur de sang, qui coïncide également avec le 14 juin. Une double célébration en hommage à un geste vital et volontaire incarnant les plus hautes valeurs de solidarité, de cohésion sociale et d’humanisme.
+                <br><br>
+                Dans le souci de donner à cette occasion une portée nationale mobilisatrice, l’Agence marocaine du sang et de ses dérivés (AMSD) lance un programme de campagnes nationales de don de sang dans les différentes régions du Royaume, en partenariat avec les acteurs de la société civile. L’objectif étant d’élargir la base des donneurs et de rapprocher les services de collecte de dons dans l’ensemble des provinces notamment auprès des jeunes.
+                <br><br>
+                Cette journée constitue une étape nationale annuelle visant à ancrer la culture du don de sang en tant qu’acte humanitaire noble, selon l’AMSD, en ce sens où elle représente l’occasion de renforcer la sensibilisation collective à l’importance du don régulier, contribuant ainsi à la consolidation de la sécurité transfusionnelle nationale et à une réponse continue aux besoins du système de santé, notamment en cas d’urgences médicales, d’interventions chirurgicales complexes et de traitement des maladies chroniques.
+                <br><br>
+                De ce fait, l’agence renouvelle son appel à un engagement volontaire et régulier dans cette noble action, en particulier auprès de la jeunesse marocaine, invitant l’ensemble des acteurs de la société civile à accompagner cette campagne nationale et à œuvrer collectivement pour ancrer ce comportement citoyen, véritable levier du droit à la vie.
+                <br><br>
+                « Faisons du 14 juin une journée nationale de mobilisation et de solidarité, au cours de laquelle nous réaffirmons notre attachement à la vie, exprimons notre engagement envers les malades et réaffirmons notre conviction commune que donner du sang, c’est sauver la vie », souligne l’AMSD dans un communiqué.
+                <br><br>
+                Au niveau mondial, la campagne 2025 placée sous le signe de l’espoir et de la solidarité, adopte un slogan évocateur : « Donnez du sang, donnez de l’espoir : ensemble, nous sauvons des vies ».
+                <br><br>
+                Par leurs dons réguliers, des millions de citoyennes et de citoyens à travers le monde sauvent des vies, accompagnent les malades et renforcent la résilience des systèmes de santé face aux urgences, aux crises sanitaires ou aux traitements de longue durée. Dans ce combat silencieux, chaque don devient une promesse de vie.
+                <br><br>
+                Ainsi, cette célébration dépasse la seule portée symbolique : elle incarne un appel à l’engagement collectif en faveur d’un système transfusionnel sûr, équitable et durable. À ce titre, l’Organisation Mondiale de la Santé (OMS) rappelle l’impact positif que les donneurs et les donneuses ont sur la santé et le bien-être d’autrui et sur la promotion des valeurs de solidarité, de compassion et de communauté par le don de sang.
+                <br><br>
+                Dans sa campagne de sensibilisation sur le don de sang et de plasma, l’OMS insiste également sur la nécessité de « mobiliser le soutien des gouvernements et des partenaires de développement pour investir dans les programmes nationaux de transfusion sanguine et les soutenir afin d’atteindre l’accès universel à une transfusion sanguine sûre, partout dans le monde ».
+            </p>
+
+            <button onclick="toggleArticle('1')" class="text-red-600 hover:underline font-medium text-sm">
+                Lire l'article complet →
+            </button>
+        </div>
+        <div class="aspect-video w-full lg:w-1/3">
+            <img th:src="@{/img/image1.jpg}" alt="image" class="w-full h-full object-cover rounded-lg shadow">
+        </div>
+
+    </div>
+
+    <!-- Article 2 -->
+    <div class="flex flex-col lg:flex-row-reverse items-start gap-6 border-b pb-6">
+        <div class="flex-1">
+            <h2 class="text-2xl font-bold mb-2">Lancement mercredi d’une campagne nationale</h2>
+
+            <p class="text-gray-700 text-sm mb-4 line-clamp-2" id="excerpt-2">
+                Rabat – Le Centre national de transfusion sanguine et d’hématologie (CNTSH) organise mercredi une campagne nationale de sensibilisation...
+            </p>
+            <p class="text-gray-700 text-sm mb-4 hidden" id="full-2">
+                Rabat – Le Centre national de transfusion sanguine et d’hématologie (CNTSH) organise mercredi une campagne nationale de sensibilisation au don de sang sous le slogan “le don de sang est la responsabilité de tous”.
+            </p>
+
+            <button onclick="toggleArticle('2')" class="text-red-600 hover:underline font-medium text-sm">
+                Lire l'article complet →
+            </button>
+        </div>
+        <div class="w-full lg:w-1/3 aspect-video">
+            <iframe class="w-full h-full rounded-lg shadow" src="https://www.youtube.com/embed/P3KvBss1cGc" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Article 3 -->
+    <div class="flex flex-col lg:flex-row items-start gap-6">
+        <div class="flex-1">
+            <h2 class="text-2xl font-bold mb-2">Sefrou : Campagne de don de sang pour cause de pénurie</h2>
+
+            <p class="text-gray-700 text-sm mb-4 line-clamp-3" id="excerpt-3">
+                Une campagne de don de sang a été lancée, vendredi à Sefrou, dans le but de renforcer les stocks en cette matière vitale...
+            </p>
+            <p class="text-gray-700 text-sm mb-4 hidden" id="full-3">
+                Une campagne de don de sang a été lancée, vendredi à Sefrou, dans le but de renforcer les stocks en cette matière vitale.
+                <br><br>
+                Cette initiative, organisée par l’association « Basma cancer » en partenariat avec la délégation provinciale du ministère de la Santé et de la Protection sociale, la commune de Sefrou et le Centre régional de transfusion sanguine de Fès, vise à venir en aide aux personnes atteintes de cancer dont le traitement nécessite régulièrement d’importantes quantités de sang.
+                <br><br>
+                La première journée de cette campagne, qui se poursuit jusqu’au 4 mai sous le signe « Ton sang est une vie pour les autres », a enregistré une importante participation avec près de 120 donneurs.
+                <br><br>
+                Dans une déclaration à la MAP, la présidente de l’association Basma cancer, Najia Lahmidi a salué l’engagement des citoyens de différents âges lors de cette première journée, soulignant l’élan de solidarité suscité par cet action de solidarité.
+                <br><br>
+                Elle a précisé que l’association a mobilisé en coordination avec ses partenaires une équipe médicale et infirmière pour encadrer cette opération, dans le strict respect des conditions de sécurité sanitaire, mettant en avant la portée humaine de cette initiative, destinée à soutenir les malades du cancer, en particulier ceux sous traitement par chimiothérapie.
+                <br><br>
+                Elle a ajouté que cette campagne ambitionne aussi de renforcer la culture du don volontaire et régulier au sein de la population de Sefrou, rappelant que ce geste civique permet de sauver chaque année la vie de milliers de patients.
+            </p>
+
+            <button onclick="toggleArticle('3')" class="text-red-600 hover:underline font-medium text-sm">
+                Lire l'article complet →
+            </button>
+        </div>
+        <div class="w-full lg:w-1/3">
+            <img th:src="@{/img/image3.jpg}" alt="image" class="w-full rounded-lg shadow object-cover h-48">
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3><i class="fas fa-tint blood-drop"></i> LifeSaver</h3>
+                <p>Plateforme de don de sang citoyenne.Plateforme officielle de mise en relation avec les centres de don de sang au Maroc</p>
+            </div>
+            <div class="footer-col">
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a th:href="@{/register}">Devenir donneur</a></li>
+                    <li><a th:href="@{/info#maroc}">Où donner ?</a></li>
+                    <li><a th:href="@{/info#freq}">Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> +212 6 12 34 56 78</p>
+                <p><i class="fas fa-envelope"></i> lifesavermorocco@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 LifeSaver. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+<script>
+    function toggleArticle(id) {
+        const excerpt = document.getElementById("excerpt-" + id);
+        const full = document.getElementById("full-" + id);
+        const button = event.target;
+
+        if (excerpt.classList.contains("hidden")) {
+            excerpt.classList.remove("hidden");
+            full.classList.add("hidden");
+            button.innerText = "Lire l'article complet →";
+        } else {
+            excerpt.classList.add("hidden");
+            full.classList.remove("hidden");
+            button.innerText = "Réduire l'article ↑";
+        }
+    }
+</script>
+<script>
+    let lastScrollTop = 0;
+    const header = document.getElementById('main-header');
+
+    window.addEventListener('scroll', function () {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > lastScrollTop && currentScroll > 100) {
+            // Scroll vers le bas
+            header.classList.add('-translate-y-full');
+        } else {
+            // Scroll vers le haut
+            header.classList.remove('-translate-y-full');
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+</script>
+
+
+</body>
+</html>

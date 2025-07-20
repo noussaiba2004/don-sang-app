@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LifeSaver - Trouvez un centre</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.4.0/css/all.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/donneur.css}" />
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+</head>
+<body class="font-sans pt-24">
+
+<header id="main-header" class="header">
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-tint blood-drop"></i>
+            <h1>LifeSaver</h1>
+        </div>
+        <nav class="navbar">
+            <a th:href="@{/}" class="nav-link active">Accueil</a>
+            <a th:href="@{/event}" class="nav-link">Événements</a>
+            <a th:href="@{/actuality}" class="nav-link">Actualités</a>
+            <a th:href="@{/info#maroc}" class="nav-link">Centres</a>
+            <a th:href="@{/faq}" class="nav-link">FAQ</a>
+            <a th:href="@{/logout}" class="btn-red">Déconnexion</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero-image bg-red-50 py-16 text-center">
+    <div class="container mx-auto px-6">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">Trouvez un centre proche</h1>
+        <p class="text-lg text-gray-600 mb-6">Votre don peut sauver des vies</p>
+        <form id="rechercheForm" th:action="@{/donneur/rechercher}" method="get" class="flex justify-center">
+            <input type="text" name="q" placeholder="Code postal ou ville" class="input-text p-2 border rounded">
+            <button type="submit" class="btn-red ml-2 px-4 py-2 bg-red-600 text-white rounded">
+                <i class="fas fa-search mr-1"></i>Rechercher
+            </button>
+        </form>
+    </div>
+
+</section>
+
+<!-- Boutons -->
+<section class="py-8 bg-white text-center">
+    <div class="flex justify-center gap-4">
+        <a th:href="@{/donneur/historique}" class="btn-action bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+            <i class="fas fa-history mr-1"></i> Historique
+        </a>
+        <a th:href="@{/donneur/reservation}" class="btn-action border border-red-600 text-red-600 hover:bg-red-50 px-4 py-2 rounded">
+            <i class="fas fa-calendar-plus mr-1"></i> Réserver un créneau
+        </a>
+    </div>
+</section>
+<!-- Message si aucun centre -->
+<div th:if="${message}" class="alert alert-warning">
+    <p th:text="${message}"></p>
+</div>
+<!-- Section carte -->
+<section id="mapSection" class="bg-gray-100 py-16" th:if="${centres != null and #lists.size(centres) > 0}">
+    <div class="container mx-auto px-6">
+        <h2 class="text-2xl font-semibold mb-6">Centres près de vous</h2>
+        <div class="bg-white rounded shadow overflow-hidden">
+            <div id="map" class="h-96 w-full"></div>
+            <div class="p-6">
+                <div class="grid md:grid-cols-3 gap-6" th:each="centre : ${centres}">
+                    <div class="p-4 border rounded">
+                        <h3 class="text-lg font-semibold" th:text="${centre.nom}">Nom centre</h3>
+                        <p class="text-gray-600" th:text="${centre.adresse}">Adresse</p>
+                        <p th:if="${centre.etat == 'urgence'}" class="text-red-600 mt-2">
+                            <i class="fas fa-tint mr-1"></i> Besoin urgent
+                        </p>
+                        <p th:if="${centre.etat == 'ouvert'}" class="text-green-600 mt-2">
+                            <i class="fas fa-check-circle mr-1"></i> Ouvert
+                        </p>
+                        <p th:if="${centre.etat == 'ferme'}" class="text-yellow-600 mt-2">
+                            <i class="fas fa-clock mr-1"></i> Fermé
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Leaflet JS -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    document.addEventListener("DOMContentLoaded", function () {
+        let centres = JSON.parse(/*[[${centresJson}]]*/ '[]');
+
+        if (centres.length === 0) return;
+
+        let map = L.map('map').setView([32, -6], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        centres.forEach(c => {
+            if (c.latitude && c.longitude) {
+                L.marker([c.latitude, c.longitude]).addTo(map)
+                    .bindPopup(`<b>${c.nom}</b><br>${c.adresse}`);
+            }
+        });
+
+        let bounds = L.latLngBounds(centres.map(c => [c.latitude, c.longitude]));
+        map.fitBounds(bounds);
+    });
+    /*]]>*/
+</script>
+
+<!-- Scroll automatique vers la carte après recherche -->
+<script>
+    document.getElementById("rechercheForm").addEventListener("submit", function(event) {
+        const input = event.target.querySelector('input[name="q"]');
+        const q = encodeURIComponent(input.value);
+        event.preventDefault();
+        window.location.href = `/donneur/rechercher?q=${q}#mapSection`;
+    });
+</script>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-10 mt-10">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-1/3 mb-6">
+                <h3 class="text-xl font-bold mb-2">LifeSaver</h3>
+                <p class="text-gray-400">Plateforme officielle de don de sang au Maroc.</p>
+            </div>
+            <div class="w-full md:w-1/3 mb-6">
+                <h3 class="text-xl font-bold mb-2">Liens</h3>
+                <ul>
+                    <li><a th:href="@{/info#freq}" class="text-gray-400 hover:text-white">Conditions</a></li>
+                    <li><a th:href="@{/faq}" class="text-gray-400 hover:text-white">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/3">
+                <h3 class="text-xl font-bold mb-2">Contact</h3>
+                <p class="text-gray-400"><i class="fas fa-phone mr-2"></i>+212 6 12 34 56 78</p>
+                <p class="text-gray-400"><i class="fas fa-envelope mr-2"></i>lifesavermorocco@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script th:src="@{/js/header-scroll.js}"></script>
+</body>
+</html>

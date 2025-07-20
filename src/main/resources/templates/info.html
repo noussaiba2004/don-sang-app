@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>En savoir plus sur le don de sang</title>
+    <link rel="stylesheet" href="css/home.css"/>
+    <link rel="stylesheet" href="css/info.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="bg-[#fee2e2]">
+
+<!-- Header -->
+<header id="main-header" class="header">
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-tint blood-drop"></i>
+            <h1>LifeSaver</h1>
+        </div>
+        <nav class="navbar">
+            <a th:href="@{/}" class="nav-link active">Accueil</a>
+            <a th:href="@{/event}" class="nav-link">Événements</a>
+            <a th:href="@{/actuality}" class="nav-link">Actualités</a>
+            <a th:href="@{/register}" class="btn btn-primary">S'inscrire</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Contenu accordéon -->
+<div class="accordion container">
+
+    <!-- Section 1 -->
+    <div class="accordion-item" id="gen">
+        <div class="accordion-header">
+            <span>1. Don de sang </span>
+            <span class="icon">＋</span>
+        </div>
+        <div class="accordion-content">
+            <p>
+                Le don de sang est un acte humanitaire essentiel qui permet de sauver des vies.
+                Chaque jour, des milliers de personnes ont besoin de transfusions sanguines à la
+                suite d’accidents, d’interventions chirurgicales, ou en raison de maladies comme
+                l’anémie ou le cancer. Donner son sang, c’est offrir une partie de soi pour aider
+                les autres, sans attendre de contrepartie. Ce geste simple, rapide et sans danger
+                pour le donneur, contribue à maintenir les réserves de sang nécessaires dans les
+                hôpitaux et les centres de santé. En plus de son importance médicale, le don de
+                sang renforce les valeurs de solidarité, de citoyenneté et d’entraide dans la
+                société. Participer à une collecte de sang, c’est donc devenir un maillon essentiel
+                de la chaîne de la vie.
+            </p>
+        </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="accordion-item" id="freq">
+        <div class="accordion-header">
+            <span>2. Fréquence & Conditions</span>
+            <span class="icon">＋</span>
+        </div>
+        <div class="accordion-content">
+            <p>
+                Au Maroc, la législation encadrée par le décret n° 2‑94‑20 stipule que la fréquence maximale de don est de <strong>5 fois par an pour les hommes</strong> (intervalle minimum de deux mois entre chaque don) et <strong>3 fois par an pour les femmes</strong> (intervalle minimum de trois mois). Cette réglementation vise à préserver la santé du donneur tout en répondant aux besoins constants en sang.
+            </p>
+            <p>
+                Pour pouvoir faire un don, il faut remplir plusieurs conditions : avoir <strong>entre 18 et 60 ans</strong>, peser <strong>plus de 50 kg</strong>, et être en bonne santé générale — excluant notamment toute infection en cours (rhume, grippe, etc.).
+            </p>
+            <h3>Contre‑indications temporaires</h3>
+            <ul>
+                <li>Attendre 3 semaines après une vaccination ou la prise de certains médicaments.</li>
+                <li>Attendre 6 mois après des soins dentaires, hijama ou extraction dentaire.</li>
+                <li>Attendre jusqu’à 5 ans après une tuberculose guérie.</li>
+            </ul>
+            <h3>Contre‑indications permanentes</h3>
+            <ul>
+                <li>Pathologies chroniques : diabète, hépatites, SIDA, cancer, asthme.</li>
+                <li>Insuffisance hépatique ou rénale.</li>
+                <li>Séjour en zone impaludée.</li>
+                <li>Usage de drogues intraveineuses.</li>
+            </ul>
+            <p>
+                Grâce à ces critères stricts, le don de sang reste une pratique sûre pour le donneur et le receveur, tout en assurant un stock national fiable.
+            </p>
+        </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="accordion-item" id="group">
+        <div class="accordion-header">
+            <span>3. Groupes sanguins & compatibilités</span>
+            <span class="icon">＋</span>
+        </div>
+        <div class="accordion-content">
+            <p>
+                Le système des groupes sanguins joue un rôle essentiel dans la compatibilité entre donneurs et receveurs.
+                Le sang humain est classé principalement selon deux systèmes :
+                le système <strong>ABO</strong> (groupes A, B, AB, O) et le facteur <strong>Rhésus</strong> (Rh+ ou Rh−).
+                Le groupe <strong>O−</strong> est considéré comme le donneur universel, car son sang peut être transfusé à tous
+                les groupes, tandis que le groupe <strong>AB+</strong> est le receveur universel, car il peut recevoir du sang
+                de tous les autres groupes. Cette diversité rend la gestion des stocks plus complexe, car certains groupes
+                comme <strong>AB−</strong> ou <strong>O−</strong> sont rares. C’est pourquoi il est important que des personnes
+                de tous les groupes donnent régulièrement leur sang, afin d’assurer une couverture complète pour les besoins
+                en transfusions.
+            </p>
+
+            <h3>La compatibilité transfusionnelle dépend de :</h3>
+            <ul>
+                <li>Le groupe sanguin <strong>ABO</strong> (A, B, AB ou O)</li>
+                <li>Le facteur <strong>Rhésus</strong> (Rh+ ou Rh−)</li>
+            </ul>
+
+            <h3>Système ABO</h3>
+            <ul>
+                <li><strong>Groupe A</strong> → antigène A</li>
+                <li><strong>Groupe B</strong> → antigène B</li>
+                <li><strong>Groupe AB</strong> → antigènes A et B</li>
+                <li><strong>Groupe O</strong> → aucun antigène</li>
+            </ul>
+
+            <h3>Facteur Rhésus</h3>
+            <ul>
+                <li><strong>Rh+ </strong>→ présence du facteur Rh</li>
+                <li><strong>Rh− </strong>→ absence du facteur Rh</li>
+                <li>Une personne <strong>Rh−</strong> ne peut recevoir que du Rh−, tandis qu’une personne <strong>Rh+</strong> peut recevoir du Rh+ ou du Rh−.</li>
+            </ul>
+
+            <h3>Tableau de compatibilité : Qui peut donner à qui ?</h3>
+            <div class="table-responsive">
+                <table class="blood-center-table">
+                    <thead>
+                    <tr>
+                        <th>Donneur ↓ / Receveur →</th>
+                        <th>O−</th><th>O+</th><th>A−</th><th>A+</th><th>B−</th><th>B+</th><th>AB−</th><th>AB+</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>O−</td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅</td>
+                    </tr>
+                    <tr>
+                        <td>O+</td><td class="no">❌</td><td class="ok">✅</td><td class="no">❌</td><td class="ok">✅</td><td class="no">❌</td><td class="ok">✅</td><td class="no">❌</td><td class="ok">✅</td>
+                    </tr>
+                    <tr>
+                        <td>A−</td><td class="no">❌</td><td class="no">❌</td><td class="ok">✅</td><td class="ok">✅</td><td class="no">❌</td><td class="no">❌</td><td class="ok">✅</td><td class="ok">✅</td>
+                    </tr>
+                    <tr>
+                        <td>A+</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="ok">✅</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="ok">✅</td>
+                    </tr>
+                    <tr>
+                        <td>B−</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅</td>
+                    </tr>
+                    <tr>
+                        <td>B+</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="ok">✅</td><td class="no">❌</td><td class="ok">✅</td>
+                    </tr>
+                    <tr>
+                        <td>AB−</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="ok">✅</td><td class="ok">✅</td>
+                    </tr>
+                    <tr>
+                        <td>AB+</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td><td class="ok">✅</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+            <h3>Résumé</h3>
+            <ul>
+                <li><strong>O−</strong> est le donneur universel (compatible avec tous).</li>
+                <li><strong>AB+</strong> est le receveur universel (peut recevoir de tous).</li>
+                <li>Les personnes <strong>Rh−</strong> ne doivent recevoir que du Rh−.</li>
+                <li>Les personnes <strong>Rh+</strong> peuvent recevoir du Rh+ ou du Rh−.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="accordion-item" id="maroc">
+        <div class="accordion-header">
+            <span>4. Centres au Maroc</span>
+            <span class="icon">＋</span>
+        </div>
+        <div class="accordion-content">
+            <h3>Centres Régionaux de Transfusion Sanguine</h3>
+            <p>
+                Au Maroc, les centres de transfusion sanguine jouent un rôle crucial dans la collecte, le traitement et la distribution du sang et de ses composants.
+                Placés sous la tutelle du Centre National de Transfusion Sanguine (CNTS), ces centres sont répartis dans plusieurs grandes villes du royaume afin de répondre aux besoins des hôpitaux publics et privés.
+            </p>
+            <p>
+                Ils organisent des collectes fixes dans leurs locaux ainsi que des collectes mobiles dans des lieux publics ou institutions.
+                Selon leur équipement, certains centres peuvent effectuer uniquement des collectes de sang total, tandis que d’autres sont habilités à prélever également du plasma ou des plaquettes grâce à des techniques d’aphérèse.
+            </p>
+
+            <h4>📍 Tableau des centres de transfusion sanguine au Maroc</h4>
+            <div class="table-responsive">
+                <table class="blood-center-table">
+                    <thead>
+                    <tr>
+                        <th>Centre</th>
+                        <th>Adresse</th>
+                        <th>Types de collecte</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>CNTS Rabat</td>
+                        <td>Rue Lamfadel Cherkaoui, Rabat</td>
+                        <td>Sang total, Plasma, Plaquettes</td>
+                    </tr>
+                    <tr>
+                        <td>CRTS Rabat</td>
+                        <td>Avenue Ibn Rochd, Rabat (annexe régionale)</td>
+                        <td>Sang total, Plasma</td>
+                    </tr>
+                    <tr>
+                        <td>Centre de Casablanca</td>
+                        <td>Rue Lahcen El Basri, Quartier Oasis</td>
+                        <td>Sang total, Plasma, Plaquettes</td>
+                    </tr>
+                    <tr>
+                        <td>Centre de Marrakech</td>
+                        <td>Hôpital Ibn Tofail, Marrakech</td>
+                        <td>Sang total, Plaquettes</td>
+                    </tr>
+                    <tr>
+                        <td>Centre de Fès</td>
+                        <td>CHU Hassan II, Route Sidi Hrazem</td>
+                        <td>Sang total, Plasma</td>
+                    </tr>
+                    <tr>
+                        <td>Centre de Tanger</td>
+                        <td>Hôpital Régional de Tanger</td>
+                        <td>Sang total</td>
+                    </tr>
+                    <tr>
+                        <td>CRTS Tétouan</td>
+                        <td>Hôpital Saniat Rmel, Tétouan</td>
+                        <td>Sang total</td>
+                    </tr>
+                    <tr>
+                        <td>Centre d'Oujda</td>
+                        <td>Hôpital Al Farabi, Oujda</td>
+                        <td>Sang total</td>
+                    </tr>
+                    <tr>
+                        <td>Centre d'Agadir</td>
+                        <td>CHR Hassan II, Agadir</td>
+                        <td>Sang total, Plasma</td>
+                    </tr>
+                    <tr>
+                        <td>Centre de Meknès</td>
+                        <td>Hôpital Mohamed V, Meknès</td>
+                        <td>Sang total</td>
+                    </tr>
+                    <tr>
+                        <td>Centre de Laâyoune</td>
+                        <td>Hôpital Moulay Hassan Ben El Mehdi</td>
+                        <td>Sang total</td>
+                    </tr>
+                    <tr>
+                        <td>CRTS El Jadida</td>
+                        <td>Hôpital Mohammed V, El Jadida</td>
+                        <td>Sang total</td>
+                    </tr>
+                    <tr>
+                        <td>CRTS Nador</td>
+                        <td>Centre Hospitalier de Nador</td>
+                        <td>Sang total</td>
+                    </tr>
+                    <tr>
+                        <td>CRTS Al Hoceima</td>
+                        <td>Hôpital Mohammed V, Al Hoceima</td>
+                        <td>Sang total</td>
+                    </tr>
+                    <tr>
+                        <td>CRTS Safi</td>
+                        <td>Hôpital Mohammed V, Safi</td>
+                        <td>Sang total</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Section 5 -->
+    <div class="accordion-item" id="proc">
+        <div class="accordion-header">
+            <span>5. Procédure de don</span>
+            <span class="icon">＋</span>
+        </div>
+        <div class="accordion-content">
+            <p>
+                L’opération de don de sang au Maroc se déroule dans un environnement médical encadré et sécurisé, au sein des centres de transfusion ou lors de collectes mobiles. Avant le don, chaque volontaire remplit un questionnaire médical et passe un entretien avec un professionnel de santé afin de vérifier son aptitude au don. Si tout est conforme, l’opération peut commencer.
+            </p>
+            <h3>Durée et types de don</h3>
+            <ul>
+                <li><strong>Don de sang total :</strong> ~8 à 10 minutes pour 450 ml de sang.</li>
+                <li><strong>Don de plasma (aphérèse) :</strong> 35 à 45 minutes.</li>
+                <li><strong>Don de plaquettes (aphérèse) :</strong> 1 h 15 à 1 h 30.</li>
+            </ul>
+            <h3>Après le don</h3>
+            <p>
+                Après le prélèvement, le donneur est invité à se reposer et à prendre une collation pour éviter tout malaise.
+            </p>
+            <h3>Importance clinique</h3>
+            <p>
+                Tous les types de dons sont précieux et permettent de répondre à différents besoins médicaux : urgences, traitements contre le cancer, maladies chroniques ou hémorragies graves.
+            </p>
+        </div>
+    </div>
+
+
+</div>
+<!-- footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3><i class="fas fa-tint blood-drop"></i> LifeSaver</h3>
+                <p>Plateforme de don de sang citoyenne.Plateforme officielle de mise en relation avec les centres de don de sang au Maroc</p>
+            </div>
+            <div class="footer-col">
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a th:href="@{/register}">Devenir donneur</a></li>
+                    <li><a th:href="@{/info#maroc}">Où donner ?</a></li>
+                    <li><a th:href="@{/info#freq}">Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> +212 6 12 34 56 78</p>
+                <p><i class="fas fa-envelope"></i> lifesavermorocco@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 LifeSaver. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- JS accordéon -->
+<script>
+
+    // Fonction pour ouvrir une section accordéon donnée
+    function openAccordionSection(sectionId) {
+        const item = document.getElementById(sectionId);
+        if (!item) return;
+        const header = item.querySelector('.accordion-header');
+        const content = item.querySelector('.accordion-content');
+        const icon = header.querySelector('.icon');
+        if (!content.classList.contains('open')) {
+            content.classList.add('open');
+            icon.textContent = '−';
+        }
+    }
+
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.icon');
+            const isOpen = content.classList.toggle('open');
+            icon.textContent = isOpen ? '−' : '＋';
+        });
+    });
+
+    // Ouverture automatique de la section ciblée par l'ancre dans l'URL
+    window.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash.substring(1); // enlève #
+        if (hash) {
+            openAccordionSection(hash);
+            // Scroll vers la section (optionnel)
+            const el = document.getElementById(hash);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            // Par défaut, ouvrir la 1ère section (comme avant)
+            document.querySelector('#gen .accordion-header').click();
+        }
+    });
+</script>
+<script src="/js/header-scroll.js"></script>
+</body>
+</html>

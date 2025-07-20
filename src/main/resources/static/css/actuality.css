@@ -1,0 +1,68 @@
+/* actuality.css */
+
+/* Décale le contenu principal pour ne pas être couvert par le header */
+main {
+    padding-top: 100px; /* adapte selon la hauteur réelle de ton header */
+}
+body{
+    background-color: #fee2e2;
+}
+.card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    margin: 15px 0;
+    transition: transform 0.2s;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+    padding: 20px 0;
+}
+
+
+.date {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 10px;
+    display: block;
+}
+
+.urgent-badge {
+    display: inline-block;
+    background: #e74c3c;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.section.bg-light {
+    background-color: #f8f9fa;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #d63031;
+}
+
+.section-title i {
+    margin-right: 10px;
+}
+

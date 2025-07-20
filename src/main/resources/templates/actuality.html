@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualités et Besoins - LifeSaver</title>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/actuality.css}">
+
+</head>
+<body class="p-8">
+
+<!-- ======= HEADER ======= -->
+<header id="main-header" class="header" >
+ <div class="container">
+        <div class="logo">
+            <i class="fas fa-tint blood-drop"></i>
+            <h1>LifeSaver</h1>
+        </div>
+        <nav class="navbar">
+            <a th:href="@{/}" class="nav-link">Accueil</a>
+            <a th:href="@{/event}" class="nav-link">Événements</a>
+            <a th:href="@{/actuality}" class="nav-link active">Actualités</a>
+            <a th:href="@{/register}" class="btn btn-primary">S'inscrire</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ======= MAIN ======= -->
+<main style="margin-top: 140px;"> <!-- Ajout d'une marge pour dégager le header -->
+
+    <!-- Section Actualités -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-newspaper"></i> Actualités des centres</h2>
+            <div class="card-grid">
+                <div class="card" th:each="actu : ${actualites}">
+                    <h3 th:text="${actu.titre}">Titre</h3>
+                    <p th:text="${actu.contenu}">Contenu</p>
+                    <span class="date" th:text="${#temporals.format(actu.datePublication, 'dd/MM/yyyy HH:mm')}">Date</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Besoins urgents -->
+    <section class="section ">
+        <div class="container">
+            <h2 class="section-title text-red"><i class="fas fa-heartbeat"></i> Besoins en sang</h2>
+            <div class="card-grid">
+                <div class="card" th:each="besoin : ${besoins}">
+                    <h4>Groupe : <span th:text="${besoin.groupeSanguin}">A+</span></h4>
+                    <p>Quantité : <span th:text="${besoin.quantite}">5</span> unités</p>
+                    <p th:if="${besoin.urgence}" class="urgent-badge">Urgent</p>
+                    <p><strong th:text="'Centre : ' + ${besoin.centre.nom}">Centre</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ======= FOOTER ======= -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3><i class="fas fa-tint blood-drop"></i> LifeSaver</h3>
+                <p>Plateforme officielle de mise en relation avec les centres de don de sang au Maroc.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a th:href="@{/register}">Devenir donneur</a></li>
+                    <li><a th:href="@{/info#maroc}">Où donner ?</a></li>
+                    <li><a th:href="@{/info#freq}">Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> +212 6 12 34 56 78</p>
+                <p><i class="fas fa-envelope"></i> lifesavermorocco@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 LifeSaver. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+<script th:src="@{/js/header-scroll.js}"></script>
+</body>
+</html>

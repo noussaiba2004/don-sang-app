@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8fafc;
+            color: #333;
+            padding: 2rem;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #38b2ac;
+            margin-bottom: 1rem;
+        }
+
+        .content {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">Merci pour votre don, <span th:text="${prenom} + ' ' + ${nom}">Donneur</span> !</div>
+    <div class="content">
+        <p>Nous vous remercions chaleureusement pour votre don de <strong th:text="${typeCollecte}">sang</strong>.</p>
+        <p>Ce geste a été réalisé le <strong th:text="${date}">date</strong> à <strong th:text="${heure}">heure</strong> dans notre centre.</p>
+        <p>Grâce à vous, des vies seront sauvées. ❤️</p>
+    </div>
+    <div class="footer">
+        L’équipe LifeSaver<br/>
+        Merci d’être un héros du quotidien !
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveSaver - Don de Sang</title>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+<header id="main-header" class="header">
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-tint blood-drop"></i>
+            <h1>LifeSaver</h1>
+        </div>
+        <nav class="navbar">
+            <a th:href="@{/}" class="nav-link active">Accueil</a>
+            <a th:href="@{/event}" class="nav-link">Événements</a>
+            <a th:href="@{/actuality}" class="nav-link">Actualités</a>
+            <a th:href="@{/faq}" class="nav-link">FAQ</a>
+            <a th:href="@{/register}" class="btn btn-primary">S'inscrire</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <span class="urgent-badge">BESOIN URGENT</span>
+            <h2>Votre sang, leur espoir</h2>
+            <p>Rejoignez notre communauté de donneurs et participez aux collectes près de chez vous.</p>
+            <div class="btn-group">
+                <a th:href="@{/login}" class="btn btn-white">Je donne</a>
+                <a th:href="@{/info}" class="btn btn-outline">En savoir plus</a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Blood Types Section -->
+    <section class="blood-types">
+        <div class="container">
+            <h2 class="section-title">Quel est votre groupe sanguin ?</h2>
+            <p>Certains groupes sanguins sont plus rares que d'autres. Découvrez leur importance.</p>
+
+            <div class="blood-grid">
+                <div class="blood-card">
+                    <div class="blood-group">O-</div>
+                    <div class="blood-description">Donneur universel</div>
+                </div>
+                <div class="blood-card">
+                    <div class="blood-group">A+</div>
+                    <div class="blood-description">32% de la population</div>
+                </div>
+                <div class="blood-card">
+                    <div class="blood-group">B-</div>
+                    <div class="blood-description">1% de la population</div>
+                </div>
+                <div class="blood-card">
+                    <div class="blood-group">AB+</div>
+                    <div class="blood-description">Receveur universel</div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a th:href="@{/info#group}" class="btn btn-primary">Découvrir mon groupe</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3><i class="fas fa-tint blood-drop"></i> LifeSaver</h3>
+                <p>Plateforme de don de sang citoyenne.Plateforme officielle de mise en relation avec les centres de don de sang au Maroc</p>
+            </div>
+            <div class="footer-col">
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a th:href="@{/register}">Devenir donneur</a></li>
+                    <li><a th:href="@{/info#maroc}">Où donner ?</a></li>
+                    <li><a th:href="@{/info#freq}">Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> +212 6 12 34 56 78</p>
+                <p><i class="fas fa-envelope"></i> lifesavermorocco@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 LifeSaver. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+<script th:src="@{/js/header-scroll.js}"></script>
+</body>
+</html>

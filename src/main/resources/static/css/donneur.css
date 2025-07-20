@@ -1,0 +1,122 @@
+.nav-link {
+    color: #4b5563;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #dc2626;
+}
+
+.btn-red {
+    background-color: #dc2626;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.btn-red:hover {
+    background-color: #b91c1c;
+}
+
+.btn-white-red {
+    background-color: white;
+    color: #dc2626;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.btn-white-red:hover {
+    background-color: #f3f4f6;
+}
+
+.input-text {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    outline: none;
+}
+
+.search-bar {
+    display: flex;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 32rem;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.feature-card {
+    width: 100%;
+    max-width: 33.3333%;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    background-color: #fee2e2;
+    border-radius: 0.75rem;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.center-card {
+    width: 100%;
+    max-width: 33.3333%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-action i {
+    font-size: 1.1em;
+}
+.hero-image {
+    background-image: url('img/donneur.jpg'); /* Chemin de ton image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    color: white;
+}
+
+/* Optionnel : ajouter un fond semi-transparent pour lisibilité */
+.hero-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* assombrit l’image */
+    z-index: 0;
+}
+
+.hero-image > div {
+    position: relative;
+    z-index: 1;
+}
+.input-text {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    outline: none;
+    color: #1f2937; /* 👈 couleur du texte (gris foncé) */
+    background-color: white; /* 👈 au cas où elle serait transparente */
+}

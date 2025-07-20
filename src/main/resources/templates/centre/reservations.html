@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Réservations du Centre</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+
+<!-- ✅ Alerte succès -->
+<div th:if="${popupMessage}" class="bg-green-100 text-green-800 border border-green-300 p-4 rounded mb-4 text-center">
+    <p th:text="${popupMessage}"></p>
+</div>
+
+<!-- ❌ Alerte erreur -->
+<div th:if="${error}" class="bg-red-100 text-red-800 border border-red-300 p-4 rounded mb-4 text-center">
+    <p th:text="${error}"></p>
+</div>
+
+
+<div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-6 text-center">Réservations pour votre centre</h1>
+
+    <div class="mb-6 text-left">
+        <a th:href="@{/centre}" class="inline-block bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">
+            ← Retour
+        </a>
+    </div>
+
+    <form method="get" class="mb-4">
+        <label for="date" class="mr-2">Filtrer par date :</label>
+        <input type="date" name="date" id="date" th:value="${date}" class="border p-2 rounded">
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded ml-2">Rechercher</button>
+    </form>
+
+
+    <table class="w-full table-auto border-collapse mt-6">
+        <thead class="bg-gray-200">
+        <tr>
+            <th class="p-2 border">Nom</th>
+            <th class="p-2 border">Prénom</th>
+            <th class="p-2 border">Email</th>
+            <th class="p-2 border">Date</th>
+            <th class="p-2 border">Heure</th>
+            <th class="p-2 border">Sexe</th>
+            <th class="p-2 border">Type de Collecte</th>
+            <th class="p-2 border">Statut</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="res : ${reservations}" th:if="${res.status == 'EN ATTENTE'}" class="hover:bg-gray-50">
+            <td class="p-2 border" th:text="${res.donneur.nom}">Nom</td>
+            <td class="p-2 border" th:text="${res.donneur.prenom}">Prénom</td>
+            <td class="p-2 border" th:text="${res.donneur.email}">Email</td>
+            <td class="p-2 border" th:text="${res.creneau.date}">Date</td>
+            <td class="p-2 border" th:text="${res.creneau.heure}">Heure</td>
+            <td class="p-2 border" th:text="${res.donneur.sexe}">Sexe</td>
+            <td th:text="${res.typeCollecte != null ? res.typeCollecte : 'Non spécifié'}">Type</td>
+            <td class="p-2 border" th:text="${res.status}">Statut</td>
+            <td class="p-2 border">
+                <form th:action="@{'/centre/reservation/confirmer/' + ${res.id}}" method="post">
+                    <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                        Confirmer
+                    </button>
+                </form>
+                <form th:action="@{'/centre/reservation/annuler/' + ${res.id}}" method="post" class="inline-block"
+                      onsubmit="return confirm('Voulez-vous vraiment annuler cette réservation ?');">
+                    <button type="submit" class="text-red-500 hover:underline ml-2">Annuler</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2 class="text-xl font-semibold mt-10 mb-4 text-center">Dons à assurer</h2>
+    <table class="w-full table-auto border-collapse">
+        <thead class="bg-gray-100">
+        <tr>
+            <th class="p-2 border">Nom</th>
+            <th class="p-2 border">Prénom</th>
+            <th class="p-2 border">Email</th>
+            <th class="p-2 border">Date</th>
+            <th class="p-2 border">Heure</th>
+            <th class="p-2 border">Sexe</th>
+            <th class="p-2 border">Type</th>
+            <th class="p-2 border">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="don : ${dons}" class="hover:bg-gray-50">
+            <td class="p-2 border" th:text="${don.reservation.donneur.nom}">Nom</td>
+            <td class="p-2 border" th:text="${don.reservation.donneur.prenom}">Prénom</td>
+            <td class="p-2 border" th:text="${don.reservation.donneur.email}">Email</td>
+            <td class="p-2 border" th:text="${don.reservation.creneau.date}">Date</td>
+            <td class="p-2 border" th:text="${don.reservation.creneau.heure}">Heure</td>
+            <td class="p-2 border" th:text="${don.reservation.donneur.sexe}">Sexe</td>
+            <td class="p-2 border" th:text="${don.reservation.typeCollecte != null ? don.reservation.typeCollecte : 'Non spécifié'}">Type</td>
+            <td class="p-2 border flex gap-2">
+                <form th:action="@{'/centre/don/assurer/' + ${don.id}}" method="post">
+                    <button type="submit"
+                            class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 inline-block text-center">
+                        Assurer
+                    </button>
+                </form>
+                <!-- Bouton Annuler avec popup personnalisé -->
+                <form th:action="@{'/centre/don/annuler/' + ${don.id}}" method="post" class="inline-block form-annuler">
+                    <button type="button" data-id="${don.id}" class="btn-annuler text-red-500 hover:underline ml-2">
+                        Annuler
+                    </button>
+                </form>
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+    <!-- POPUP MODAL -->
+    <div id="popup-annulation" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md text-center">
+            <h2 class="text-xl font-semibold mb-4">Confirmation</h2>
+            <p class="mb-4">Voulez-vous vraiment annuler cette réservation ?</p>
+            <div class="flex justify-center gap-4">
+                <button id="cancelBtn" class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400">Annuler</button>
+                <button id="confirmBtn" class="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600">Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SCRIPT -->
+<script>
+    const popup = document.getElementById("popup-annulation");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const confirmBtn = document.getElementById("confirmBtn");
+
+    let currentForm = null;
+
+    document.querySelectorAll(".btn-annuler").forEach(button => {
+        button.addEventListener("click", function () {
+            currentForm = this.closest("form");
+            popup.classList.remove("hidden");
+        });
+    });
+
+    cancelBtn.addEventListener("click", () => {
+        popup.classList.add("hidden");
+        currentForm = null;
+    });
+
+    confirmBtn.addEventListener("click", () => {
+        if (currentForm) {
+            currentForm.submit();
+        }
+    });
+</script>
+
+</body>
+</html>
+
